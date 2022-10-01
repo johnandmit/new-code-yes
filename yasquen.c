@@ -3,14 +3,6 @@
 
 void placement(int n, int x, int y, int prev[n])
 {
-    // print when a solution is met
-    if(y == n){
-        printf("-----------\n");
-        for(int i = 0; i < n; i++){
-            printf("%i, %i\n", prev[i]+1, i+1);
-        }
-        printf("-----------\n");
-    }
     // check if x and y are valid
     for(int i = 0; i < y; i++){
         if(prev[i] == -1) continue;
@@ -18,11 +10,19 @@ void placement(int n, int x, int y, int prev[n])
         if(abs(x-prev[i]) == abs(y-i)) return; // diagonal
     }
 
-    prev[y] = x;
-    for(int i = 0; i < n; i++){
-        placement(n, i, y+1, prev);
+    // print when a solution is met
+    if(y == n-1){
+        printf("-----------\n");
+        for(int i = 0; i < n; i++){
+            printf("%i, %i\n", prev[i]+1, i+1);
+        }
+        printf("-----------\n");
+    }else{
+        prev[y] = x;
+        for(int i = 0; i < n; i++){
+            placement(n, i, y+1, prev);
+        }
     }
-    prev[y] = -1;
 }
 
 int main(){
