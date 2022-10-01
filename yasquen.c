@@ -1,57 +1,41 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <math.h>
 
-void placment(int n, int i, int nox[n * n], int x[n], int y)
+void placement(int n, int x, int y, int prev[n])
 {
-    if (i < n && x[i] <= n)
-    {
-        int nx = 1, ny = y + 1, yes = 0;
-        while (yes == 0)
-        {
-            int j = 0;
-            yes = 1;
-            while (j <= i)
-            {
-                for (int count = 0; count < n * n; count++)
-                {
-                    if (nx == nox[count])
-                    {
-                        
-                    }
-                        
-                }
-                if (abs(nx - x[j]) == abs(ny - y))
-                {
-                    yes = 0;
-                    break;
-                }
-                j++;
-            }
-            if (yes == 0)
-            {
-                nx++;
-            }
+    // print when a solution is met
+    if(y == n){
+        printf("-----------\n");
+        for(int i = 0; i < n; i++){
+            printf("%i, %i\n", prev[i]+1, i+1);
         }
-        printf("#%i queen position = %i,%i\n", i + 1, nx, ny);
-        i++;
-        x[i] = nx;
-        placment(n, i, nox, x, ny);
+        printf("-----------\n");
     }
-    if (x[i] > n)
-    {
-        nox
-        placment(n, i, nox, x, ny);
+    // check if x and y are valid
+    for(int i = 0; i < y; i++){
+        if(prev[i] == -1) continue;
+        if(x == prev[i]) return; // horizontal
+        if(abs(x-prev[i]) == abs(y-i)) return; // diagonal
     }
+
+    prev[y] = x;
+    for(int i = 0; i < n; i++){
+        placement(n, i, y+1, prev);
+    }
+    prev[y] = -1;
 }
 
-int main()
-{
+int main(){
     int n;
     printf("enter n: ");
     scanf("%i", &n);
-    int x[n], nox[n * n];
-    x[0] = 1;
-    nox[0] = 0;
-    placment(n, 0, , x, 0);
+    int prev[n];
+
+    for(int i = 0; i < n; i++){
+        prev[i] = -1;
+    }
+
+    for(int i = 0; i < n; i++){
+        placement(n, i, 0, prev);
+    }
 }
