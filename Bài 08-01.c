@@ -1,17 +1,42 @@
 #include <stdio.h>
 
-int steps(int n)
+int solutions = 0;
+
+int steps(int n, char str[], int i)
 {
-    if(n==1)
-        return 1;
-    if(n==2)
-        return 2;
-    return steps(n-1)+steps(n-2);
+    if (n == 1)
+    {
+        str[i] = '\0';
+        printf("%s1\n", str);
+        solutions++;
+        return 0;
+    }
+
+    else if (n == 2)
+    {
+        str[i] = '\0';
+        printf("%s11\n%s2\n", str, str);
+        solutions += 2;
+        return 0;
+    }
+    else
+    {
+        str[i] = '1';
+        i++;
+        steps(n - 1, str, i);
+        i--;
+        str[i] = '2';
+        i++;
+        steps(n - 2, str, i);
+    }
 }
 
-int main(){
+int main()
+{
     int n;
+    char str[100];
     printf("enter steps: ");
     scanf("%i", &n);
-    printf("possible combination of steps:%i",steps(n));
+    steps(n, str, 0);
+    printf("possible combination of steps:%i", solutions);
 }
