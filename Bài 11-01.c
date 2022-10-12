@@ -1,26 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct _PointerType{
+struct _PointerType
+{
     int inf;
     struct _PointerType *next;
 };
 typedef struct _PointerType PointerType;
 
-PointerType *place(PointerType *header,int place)
+PointerType *at(PointerType *header, int place)
 {
     PointerType *temp;
     temp = header;
-    for(;place>0; place--)
-    {   
+    for (; place > 0; place--)
+    {
         temp = temp->next;
     }
     return temp;
 }
 
-PointerType *deleteHead(PointerType *header){
+PointerType *deleteHead(PointerType *header)
+{
     PointerType *TempNode;
-    TempNode = header->Next;
+    TempNode = header->next;
     free(header);
     return TempNode;
 }
@@ -28,15 +30,16 @@ PointerType *deleteHead(PointerType *header){
 int deleteMiddle(PointerType *prev)
 {
     int x;
-    PointerType * TempNode;
+    PointerType *TempNode;
     x = prev->next->inf;
     TempNode = prev->next;
-    prev->next = prev->next->next;  
+    prev->next = prev->next->next;
     free(TempNode);
     return x;
 }
 
-PointerType *Insert(PointerType *prev, int X){
+PointerType *Insert(PointerType *prev, int X)
+{
     PointerType *TempNode;
     TempNode = (PointerType *)malloc(sizeof(PointerType));
     TempNode->inf = X;
@@ -48,12 +51,13 @@ PointerType *Insert(PointerType *prev, int X){
 PointerType *printer(PointerType *header)
 {
     PointerType *TempNode;
-    TempNode = header;
-    while(TempNode->next!=NULL)
+    TempNode = header->next;
+    while (TempNode->next != NULL)
     {
         TempNode = TempNode->next;
-        printf("%i",TempNode->inf);
+        printf("%i", TempNode->inf);
     }
+    printf("e");
 }
 
 int isEmpty(PointerType *header)
@@ -63,55 +67,59 @@ int isEmpty(PointerType *header)
 
 PointerType *MakeNull(PointerType *header)
 {
-    while(!isEmpty(header))
-    header=deleteHead(header);
+    while (!isEmpty(header))
+        header = deleteHead(header);
     return header;
 }
 
 int main()
 {
-    PointerType *header;
-    int choice = 6;
-    int x, place;
+    PointerType *header = (PointerType *)malloc(sizeof(PointerType));
+    header->next = NULL;
+    int choice = 6, x, place;
     while (choice == 6)
     {
         printf("1. insert\n2. dellete\n3. Print list\n4. check if list is empty\n5. clear list\nEnter: ");
         scanf("%i", &choice);
         if (choice == 1)
         {
-            
+
             printf("enter place you want to insert: ");
-            scanf("%i",&place);
+            scanf("%i", &place);
             printf("enter number you want to insert: ");
-            scanf("%i",&x);
-            Insert(place(place),x);
+            scanf("%i", &x);
+            Insert(at(header, place), x);
         }
         else if (choice == 2)
         {
             printf("enter place you want to insert: ");
-            scanf("%i",&place);
-            if(place == 0)
+            scanf("%i", &place);
+            if (place == 0)
             {
                 deleteHead(header);
             }
             else
             {
                 PointerType *temp;
-                temp->next=header->next
-                for(;place > 0;place--)
+                temp->next = header->next;
+                for (; place > 0; place--)
                 {
-                    temp->next=temp->next-next;
+                    temp->next = temp->next -> next;
                 }
             }
         }
         else if (choice == 3)
         {
+            printer(header);
         }
         else if (choice == 4)
         {
+            isEmpty(header);
         }
         else
         {
+            MakeNull(header);
+            PointerType *header = (PointerType *)malloc(sizeof(PointerType));
         }
         printf("\nenter 6 to continue: ");
         scanf("%i", &choice);
