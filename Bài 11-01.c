@@ -52,12 +52,12 @@ PointerType *printer(PointerType *header)
 {
     PointerType *TempNode;
     TempNode = header->next;
-    while (TempNode->next != NULL)
+    while (TempNode != NULL)
     {
+        printf("%i ", TempNode->inf);
         TempNode = TempNode->next;
-        printf("%i", TempNode->inf);
     }
-    printf("e");
+    printf("\n");
 }
 
 int isEmpty(PointerType *header)
@@ -76,12 +76,16 @@ int main()
 {
     PointerType *header = (PointerType *)malloc(sizeof(PointerType));
     header->next = NULL;
-    int choice = 6, x, place;
-    while (choice == 6)
+    int choice = 0, x, place;
+    while (1)
     {
-        printf("1. insert\n2. dellete\n3. Print list\n4. check if list is empty\n5. clear list\nEnter: ");
+        printf("1. insert\n2. dellete\n3. Print list\n4. check if list is empty\n5. clear list\n6. end programme\nEnter: ");
         scanf("%i", &choice);
-        if (choice == 1)
+        if (choice == 6)
+        {
+            break;
+        }
+        else if (choice == 1)
         {
 
             printf("enter place you want to insert: ");
@@ -92,19 +96,17 @@ int main()
         }
         else if (choice == 2)
         {
-            printf("enter place you want to insert: ");
+            printf("enter place you want to delete: ");
             scanf("%i", &place);
             if (place == 0)
-            {
                 deleteHead(header);
-            }
             else
             {
                 PointerType *temp;
                 temp->next = header->next;
                 for (; place > 0; place--)
                 {
-                    temp->next = temp->next -> next;
+                    temp->next = temp->next->next;
                 }
             }
         }
@@ -114,14 +116,14 @@ int main()
         }
         else if (choice == 4)
         {
-            isEmpty(header);
+            if(isEmpty(header))
+            {
+                printf("list is empty");
+            }
         }
         else
         {
             MakeNull(header);
-            PointerType *header = (PointerType *)malloc(sizeof(PointerType));
         }
-        printf("\nenter 6 to continue: ");
-        scanf("%i", &choice);
     }
 }
