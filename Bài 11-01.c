@@ -68,7 +68,10 @@ int isEmpty(PointerType *header)
 PointerType *MakeNull(PointerType *header)
 {
     while (!isEmpty(header))
+    {
+        
         header = deleteHead(header);
+    }
     return header;
 }
 
@@ -87,9 +90,6 @@ int main()
         }
         else if (choice == 1)
         {
-
-            printf("enter place you want to insert: ");
-            scanf("%i", &place);
             printf("enter number you want to insert: ");
             scanf("%i", &x);
             Insert(at(header, place), x);
@@ -124,6 +124,8 @@ int main()
         else
         {
             MakeNull(header);
+            header = (PointerType *)malloc(sizeof(PointerType));
+            header->next = NULL;
         }
     }
 }
