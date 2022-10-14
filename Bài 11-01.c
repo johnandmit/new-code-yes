@@ -101,7 +101,7 @@ int main()
             printf("enter place you want to delete: ");
             scanf("%i", &place);
             if (place == 0)
-                deleteHead(header);
+                header = deleteHead(header);
             else
             {
                 PointerType *temp;
