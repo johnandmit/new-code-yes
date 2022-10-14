@@ -90,6 +90,8 @@ int main()
         }
         else if (choice == 1)
         {
+            printf("enter place you want to insert: ");
+            scanf("%i", &place);
             printf("enter number you want to insert: ");
             scanf("%i", &x);
             Insert(at(header, place), x);
