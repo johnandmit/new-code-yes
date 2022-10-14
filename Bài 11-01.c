@@ -104,12 +104,7 @@ int main()
                 header = deleteHead(header);
             else
             {
-                PointerType *temp;
-                temp->next = header->next;
-                for (; place > 0; place--)
-                {
-                    temp->next = temp->next->next;
-                }
+                deleteMiddle(at(header,place));
             }
         }
         else if (choice == 3)
