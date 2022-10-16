@@ -12,7 +12,7 @@ PointerType *at(PointerType *header, int place)
 {
     PointerType *temp;
     temp = header;
-    for (; place > 0; place--)
+    for (; place > 0||temp->next != NULL; place--)
     {
         temp = temp->next;
     }
