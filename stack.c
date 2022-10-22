@@ -59,7 +59,7 @@ int main()
     float item,item2;
     int choice = 0;
     Stack *s = stackInit();
-    while(choice == 0)
+    while(choice != 0)
     {
         printf("1. insert\n2.dellete\n3.print\nother. exit");
         scanf("%i",&choice);
