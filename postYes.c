@@ -56,49 +56,66 @@ void display(Stack *s)
     }
     
 }
-
 float cacu(char str[])
 {
     Stack *s = stackInit();
     int i = 0;
-    while(str[i] != '\0')
-    {
-        if(isspace(str[i]) != 0)
-        {
-            printf("ok");
-        }
-        else if(isdigit(str[i]))
-        {
-            stackPush(s,str[i]-48);
-            //printf("%i", str[i]-48);
-            printf("onk");
-        }
-        else
-        {
-            float num2 = stackPop(s);
-            float num1 = stackPop(s);
-            float ans;
-            switch(str[i]){
-                case '^':
-                    ans = pow(num1,num2);
-                    break;
-                case '*':
-                    ans = num1 * num2;
-                    break;
-                case '/':
-                    ans = num1 / num2;
-                    break;
-                case '+':
-                    ans = num1 + num2;
-                    break;
-                case '-':
-                    ans = num1 - num2;
-                    break;
+    
+    char *start = str, *end = str;
+    while(1){
+        if(*end==' ' || *end=='\0'){
+            // process tokens
+            if(isdigit(start[0])){
+                int size = end - start;
+                char buffer[size];
+                memcpy(buffer, start, size);
+                float num = atof(buffer);
+
+                printf("%f\n", num);
+
+                stackPush(s, num);
             }
-           
-            stackPush(s, ans);
+            else
+            {
+                float num2 = stackPop(s);
+                float num1 = stackPop(s);
+                float ans;
+                switch(str[i]){
+                    case '^':
+                        ans = pow(num1,num2);
+                        break;
+                    case '*':
+                        ans = num1 * num2;
+                        break;
+                    case '/':
+                        ans = num1 / num2;
+                        break;
+                    case '+':
+                        ans = num1 + num2;
+                        break;
+                    case '-':
+                        ans = num1 - num2;
+                        break;
+                }
+            
+                stackPush(s, ans);
+            }
+
+            // handle last token
+            if(*end=='\0')
+                break;
+
+            // progress to the next window, skipping space
+            start = ++end;
         }
-        i++;
+        else{
+            end++;
+        }
+
+        int size = end - start;
+        char* buffer = memcpy(malloc(size+1), start, size);
+        buffer[size] = 0;
+        printf("%s\n", buffer);
     }
     return s -> top -> item;
 }
@@ -130,7 +147,8 @@ int main()
         {
             char str[500];
             printf("enter str: ");
-            scanf("%s",str);
+            gets(str);
+            gets(str);
             printf("%f",cacu(str));
         }
         else
