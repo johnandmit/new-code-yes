@@ -54,68 +54,69 @@ void display(Stack *s)
         printf("%f, ",temp -> item);
         temp = temp -> next;
     }
-    
+
 }
+
 float cacu(char str[])
 {
     Stack *s = stackInit();
     int i = 0;
-    
-    char *start = str, *end = str;
-    while(1){
-        if(*end==' ' || *end=='\0'){
-            // process tokens
-            if(isdigit(start[0])){
-                int size = end - start;
-                char buffer[size];
-                memcpy(buffer, start, size);
-                float num = atof(buffer);
-
-                printf("%f\n", num);
-
-                stackPush(s, num);
-            }
-            else
+    while(str[i] != '\0')
+    {
+        if(isspace(str[i]))
+        {
+        }
+        else if(isdigit(str[i]))
+        {
+            float temp = str[i]-48;
+            int yes = 1;//check if value of string is not in decimal
+            float div = 10;
+            while(isdigit(str[i+1])||str[i+1]=='.')
             {
-                float num2 = stackPop(s);
-                float num1 = stackPop(s);
-                float ans;
-                switch(str[i]){
-                    case '^':
-                        ans = pow(num1,num2);
-                        break;
-                    case '*':
-                        ans = num1 * num2;
-                        break;
-                    case '/':
-                        ans = num1 / num2;
-                        break;
-                    case '+':
-                        ans = num1 + num2;
-                        break;
-                    case '-':
-                        ans = num1 - num2;
-                        break;
+                i++;
+                if(isdigit(str[i])&&yes)
+                {
+                    temp = temp * 10 + (str[i]-48);
                 }
-            
-                stackPush(s, ans);
+                else
+                {
+                    yes = 0;
+                }
+                if(isdigit(str[i])&&yes == 0)
+                {
+                    temp = temp + (str[i]-48)/div;
+                    div *= 10;
+                }
+            }
+            stackPush(s,temp);
+        }
+        else
+        {
+            float num2 = stackPop(s);
+            float num1 = stackPop(s);
+            // printf("%f, %f",num1, num2);
+            float ans;
+            switch(str[i]){
+                case '^':
+                    ans = pow(num1,num2);
+                    break;
+                case '*':
+                    ans = num1 * num2;
+                    break;
+                case '/':
+                    ans = num1 / num2;
+                    break;
+                case '+':
+                    ans = num1 + num2;
+                    break;
+                case '-':
+                    ans = num1 - num2;
+                    break;
             }
 
-            // handle last token
-            if(*end=='\0')
-                break;
-
-            // progress to the next window, skipping space
-            start = ++end;
+            stackPush(s, ans);
         }
-        else{
-            end++;
-        }
-
-        int size = end - start;
-        char* buffer = memcpy(malloc(size+1), start, size);
-        buffer[size] = 0;
-        printf("%s\n", buffer);
+        i++;
     }
     return s -> top -> item;
 }
@@ -127,7 +128,7 @@ int main()
     Stack *s = stackInit();
     while(choice != 0)
     {
-        printf("\n1. insert\n2. dellete\n3. print\n4. caculate\nother. exit\nenter: ");
+        printf("\n1. insert\n2. dellete\n3. print\n4. caculate\nother. exit\nenter:");
         scanf("%i",&choice);
         if(choice == 1)
         {
@@ -146,8 +147,8 @@ int main()
         else if(choice == 4)
         {
             char str[500];
-            printf("enter str: ");
-            gets(str);
+            fseek(stdin,0,SEEK_END);
+            printf("enter str: "); 
             gets(str);
             printf("%f",cacu(str));
         }
