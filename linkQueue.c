@@ -36,7 +36,7 @@ int isEmpty(queue *q)
 void enqueue(queue *q, int element)
 {
     node *newNode = (node *)malloc(sizeof(newNode));
-    newNode ->element = element;
+    newNode->element = element;
     if (!isEmpty(q))
     {
         q->rear->next = newNode;
@@ -44,19 +44,42 @@ void enqueue(queue *q, int element)
     }
     else
     {
-        printf("e");
         q->rear = newNode;
         q->front = newNode;
     }
 }
 
+int dequeue(queue *q)
+{
+    node *ptr = q->front;
+    if (!isEmpty(q))
+    { /* có nút dữ liệu trong hàng đợi */
+        if (q->front == q->rear) /* là nút dữ liệu cuối cùng */
+        {
+            q->rear = NULL;
+            q->front = q->front->next;
+        }
+        q->front = NULL;    
+        ptr->next = NULL;
+    }
+    return ptr->element;
+}
+
 void display(queue *q)
 {
     node *ptr = q->front;
-    while (ptr != NULL)
+    if (!isEmpty(q))
     {
-        printf("%i ",ptr->element);
-        ptr = ptr->next;
+        while (ptr != q->rear)
+        {
+            printf("%i ", ptr->element);
+            ptr = ptr->next;
+        }
+        printf("%i ", q->rear->element);
+    }
+    else
+    {
+        printf("no element in queue");
     }
 }
 
@@ -76,7 +99,7 @@ int main()
         }
         else if (choice == 2)
         {
-            // printf("%i",dequeue());
+            printf("%i", dequeue(q));
         }
         else if (choice == 3)
         {
