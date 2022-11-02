@@ -53,8 +53,8 @@ int dequeue(queue *q)
 {
     node *ptr = q->front;
     if (!isEmpty(q))
-    { /* có nút dữ liệu trong hàng đợi */
-        if (q->front == q->rear) /* là nút dữ liệu cuối cùng */
+    {
+        if (q->front == q->rear)
         {
             q->rear = NULL;
             q->front = q->front->next;
