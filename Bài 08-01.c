@@ -11,7 +11,6 @@ int steps(int n, char str[], int i)
         solutions++;
         return 0;
     }
-
     else if (n == 2)
     {
         str[i] = '\0';
