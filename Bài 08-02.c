@@ -7,7 +7,6 @@ int recursion(int n)
     else 
         return recursion(n-1)+recursion(n-2);
 }
-
 int nonRecursion(int n)
 {
     int present = 1, past = 0, temp;
@@ -19,7 +18,6 @@ int nonRecursion(int n)
     }
     return present;
 }
-
 int main()
 {
     int n;
