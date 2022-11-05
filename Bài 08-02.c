@@ -25,6 +25,6 @@ int main()
     int n;
     printf("enter n: ");
     scanf("%d", &n);
-    printf("%i\n\n", recursion(n-1));
-    printf("%i", nonRecursion(n-1));
+    printf("Recurnsion: %i\n\n", recursion(n-1));
+    printf("Non-recursion: %i", nonRecursion(n-1));
 }
