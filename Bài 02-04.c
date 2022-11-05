@@ -1,4 +1,5 @@
 #include<stdio.h>
+
 int main()
 {
     int num ,i = -1 , arr[15];
