@@ -23,7 +23,7 @@ int main()
             }
         }
     }
-
+    printf("sorted array =\n");
     for(int i = 0; i < n; i++)
     {
         printf("%d ", a[i]);
