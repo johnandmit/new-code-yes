@@ -13,13 +13,12 @@ int main()
         scanf("%i",&a[i]);
     }
     small = a[0];
-    i = 1;
-    for(;i<n;i++)
+    for(i = 1;i<n;i++)
     {
         if(a[i]< small)
         {
             small = a[i];
         }
     }
-    printf("%i",small);
+    printf("Minimum = %i",small);
 }   
