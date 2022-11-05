@@ -10,8 +10,11 @@ int main()
         arr[++i]= num % 2;
         num /= 2;
     }
+    
+    printf("Binary: ");
     while(i >= 0)
     {
-        printf("%i ",arr[i--]);
+        printf("%i",arr[i--]);
     }
+    return 0;
 }
