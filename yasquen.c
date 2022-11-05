@@ -14,7 +14,7 @@ void placement(int n, int x, int y, int prev[n])
     if(y == n-1){
         printf("-----------\n");
         for(int i = 0; i < n; i++){
-            printf("%i, %i\n", prev[i]+1, i+1);
+            printf("%i, %i\n", i+1, prev[i]+1);
         }
         printf("-----------\n");
     }else{
@@ -26,7 +26,7 @@ void placement(int n, int x, int y, int prev[n])
 
 int main(){
     int n;
-    printf("enter n: ");
+    printf("Enter n: ");
     scanf("%i", &n);
     int prev[n];
 
