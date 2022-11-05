@@ -1,13 +1,15 @@
 #include<stdio.h>
 int main()
 {
-    int n, small, i = 0;
-    printf("enter n: ");
+    int n, small, i;
+    
+    printf("Enter n: ");
     scanf("%i",&n);
+    
     int a[n];
-    for(;i<n;i++)
+    for(i=0;i<n;i++)
     {
-        printf("enter a[%i]: ",i);
+        printf("- Enter a[%i]: ",i);
         scanf("%i",&a[i]);
     }
     small = a[0];
