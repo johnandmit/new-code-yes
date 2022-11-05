@@ -4,11 +4,11 @@
 int main()
 {
     int n, i;
-    printf("enter n: ");
+    printf("Enter n: ");
     scanf("%i", &n);
     if (n < 2)
     {
-        printf("N is not prime");
+        printf("n is not prime");
     }
     else
     {
@@ -16,10 +16,10 @@ int main()
         {
             if (n % i == 0)
             {
-                printf("N is not prime");
+                printf("n is not prime");
                 return 0;
             }
         }
-        printf("N is prime");
+        printf("n is prime");
     }
 }
