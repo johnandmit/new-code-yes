@@ -1,17 +1,17 @@
 #include<stdio.h>
 int main()
 {
-    int n,a[10];
+    int n,a[10],i;
 
-    printf("enter n: ");
+    printf("Enter n: ");
     scanf("%i", &n);
-    for (int i = 0; i < n; i++)
+    for (i = 0; i < n; i++)
     {
-        printf("enter a(%i): ", i);
+        printf("Enter a(%i): ", i);
         scanf("%d", &a[i]);
     }
 
-    for (int i = n; i > 0; i--)
+    for (i = n; i > 0; i--)
     {
         for (int j = 1; j <= i; j++)
         {
