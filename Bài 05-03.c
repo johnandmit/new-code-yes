@@ -2,10 +2,12 @@
 int main()
 {
     int a, b;
-    printf("enter a: ");
+    
+    printf("Enter a: ");
     scanf("%i", &a);
-    printf("enter b: ");
+    printf("Enter b: ");
     scanf("%i", &b);
+    
     while (a != b)
     {
         if (a < b)
@@ -17,5 +19,6 @@ int main()
             a = a - b;
         }
     }
-    printf("%i", a);
+    
+    printf("GCD = %i", a);
 }
