@@ -69,7 +69,6 @@ PointerType *MakeNull(PointerType *header)
 {
     while (!isEmpty(header))
     {
-        
         header = deleteHead(header);
     }
     return header;
@@ -82,7 +81,13 @@ int main()
     int choice = 0, x, place;
     while (1)
     {
-        printf("1. insert\n2. dellete\n3. Print list\n4. check if list is empty\n5. clear list\n6. end programme\nEnter: ");
+        printf("1. insert");
+        printf("\n2. dellete");
+        printf("\n3. Print list");
+        printf("\n4. check if list is empty");
+        printf("\n5. clear list");
+        printf("\n6. end programme");
+        printf("\nEnter: ");
         scanf("%i", &choice);
         if (choice == 6)
         {
@@ -90,15 +95,15 @@ int main()
         }
         else if (choice == 1)
         {
-            printf("enter place you want to insert: ");
+            printf("Enter place you want to insert: ");
             scanf("%i", &place);
-            printf("enter number you want to insert: ");
+            printf("Enter number you want to insert: ");
             scanf("%i", &x);
             Insert(at(header, place), x);
         }
         else if (choice == 2)
         {
-            printf("enter place you want to delete: ");
+            printf("Enter place you want to delete: ");
             scanf("%i", &place);
             if (place == 0)
                 header = deleteHead(header);
@@ -115,7 +120,7 @@ int main()
         {
             if(isEmpty(header))
             {
-                printf("list is empty");
+                printf("List is empty");
             }
         }
         else
