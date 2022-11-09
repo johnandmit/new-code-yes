@@ -60,7 +60,7 @@ int Locate(int x, list_type L)
     {
         if (L.elements[q] == x)
         {
-            printf("x was found in index %i\n", q);
+            printf("X was found in index %i\n", q);
         }
     }
 }
@@ -72,19 +72,23 @@ int main()
     L.last = 0;
     while (choice == 5)
     {
-        printf("1. insert x in list at index p\n2. dellete index p in list\n3. Print list\n4. find x in list\nEnter: ");
+        printf("1. Insert x in list at index p");
+        printf("\n2. Dellete index p in list");
+        printf("\n3. Print list");
+        printf("\n4. Find x in list");
+        printf("\nEnter: ");
         scanf("%i", &choice);
         if (choice == 1)
         {
-            printf("enter x: ");
+            printf("Enter x: ");
             scanf("%i", &x);
-            printf("enter p: ");
+            printf("Enter p: ");
             scanf("%i", &p);
             L = insert(x, p, L);
         }
         else if (choice == 2)
         {
-            printf("enter p: ");
+            printf("Enter p: ");
             scanf("%i", &p);
             L = Delete(p, L);
         }
@@ -94,11 +98,11 @@ int main()
         }
         else
         {
-            printf("enter x: ");
+            printf("Enter x: ");
             scanf("%i", &x);
             Locate(x, L);
         }
-        printf("\nenter 5 to continue: ");
+        printf("\nEnter 5 to continue: ");
         scanf("%i", &choice);
     }
 }
