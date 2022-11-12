@@ -1,33 +1,76 @@
 #include <stdio.h>
+#include <string.h>
 
-int *merge(int l[], int r[])
+void merge(int arr[], int p, int q, int r)
 {
-    int i = 0, j = 0, new[100];
-    while (l[j] != '\0')
+    int first1 = p, last1 = q;
+    int first2 = q + 1, last2 = r;
+    int temp[r - p + 1];
+    int i = 0;
+
+    while (first1 <= last1 && first2 <= last2)
     {
-        new[i] = l[j];
+        if (arr[first1] < arr[first2])
+        {
+
+            temp[i] = arr[first1];
+            first1++;
+        }
+        else
+        {
+            temp[i] = arr[first2];
+            first2++;
+        }
         i++;
-        j++;
     }
-
-    j = 0;
-
-    while (r[j] != '\0')
+    while (first1 <= last1)
     {
-        new[i] = r[j];
+        temp[i] = arr[first1];
+        first1++;
         i++;
-        j++;
+    }
+    while (first2 <= last2)
+    {
+        temp[i] = arr[first2];
+        first2++;
+        i++;
+    }
+    for (int j = p; j <= r; j++)
+    {
+        arr[j] = temp[j - p];
     }
 }
 
-int *mergeSort(int l[], int r[])
+void sort(int arr[], int p, int r)
 {
-    if (l[])
+    int q;
+    if (p < r)
+    {
+        q = (p + r) / 2;
+        sort(arr, p, q);
+        sort(arr, q + 1, r);
+        merge(arr, p, q, r);
+    }
 }
 
 int main()
 {
-    int arr[100];
-    printf("enter arr: ");
-    scanf("%i", arr);
+    int a[50], n;
+    printf("enter n: ");
+    scanf("%i", &n);
+    for (int i = 0; i < n; i++)
+    {
+        printf("enter element of array: ");
+        scanf("%i", &a[i]);
+    }
+    for (int i = 0; i < n; i++)
+    {
+        printf("%i ", a[i]);
+    }
+    printf("\n");
+    sort(a, 0, n);
+    for (int i = 0; i < n; i++)
+    {
+        printf("%i ", a[i]);
+    }
 }
