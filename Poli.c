@@ -38,26 +38,24 @@ int deleteMiddle(Polynomial *prev)
 
 Polynomial *Insert(Polynomial *header, int place, int coeff, int pow)
 {
-    int place = 0;
-    Polynomial *Temp = header;
-    while (Temp->next != NULL)
+    int yes = 1;
+    Polynomial *prev = header;
+    while (prev->next != NULL)
     {
-        if(Temp->next->pow == pow)
+        if (pow == prev->next->pow)
         {
+            yes = 0;
+            prev->next->coeff += coeff;
             break;
         }
-        place++;
-        Temp = Temp->next;
+        prev = prev->next;
     }
-    if (place != 0)
+
+    if (yes)
     {
-        
-    }
-    else
-    {
+        Polynomial *prev = at(header, place);
         Polynomial *TempNode;
         TempNode = (Polynomial *)malloc(sizeof(Polynomial));
-        Polynomial *prev = at(header, place);
         TempNode->coeff = coeff;
         TempNode->pow = pow;
         TempNode->next = prev->next;
@@ -110,31 +108,31 @@ Polynomial *add(Polynomial *header1, Polynomial *header2)
     {
         if (temp1->pow == temp2->pow)
         {
-            Insert(final, temp1->coeff + temp2->coeff, temp1->pow);
+            Insert(final, 0, temp1->coeff + temp2->coeff, temp1->pow);
             temp1 = temp1->next;
             temp2 = temp2->next;
         }
         else if (temp1->pow > temp2->pow)
         {
-            Insert(final, temp2->coeff, temp2->pow);
+            Insert(final, 0, temp2->coeff, temp2->pow);
             temp2 = temp2->next;
         }
         else
         {
-            Insert(final, temp1->coeff, temp1->pow);
+            Insert(final, 0, temp1->coeff, temp1->pow);
             temp1 = temp1->next;
         }
         final = final->next;
     }
     while (temp1 != NULL)
     {
-        Insert(final, temp1->coeff, temp1->pow);
+        Insert(final, 0, temp1->coeff, temp1->pow);
         temp1 = temp1->next;
         final = final->next;
     }
     while (temp2 != NULL)
     {
-        Insert(final, temp2->coeff, temp2->pow);
+        Insert(final, 0, temp2->coeff, temp2->pow);
         temp2 = temp2->next;
         final = final->next;
     }
