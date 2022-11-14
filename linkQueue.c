@@ -49,22 +49,6 @@ void enqueue(queue *q, int element)
     }
 }
 
-int dequeue(queue *q)
-{
-    node *ptr = q->front;
-    if (!isEmpty(q))
-    {
-        if (q->front == q->rear)
-        {
-            q->rear = NULL;
-            q->front = q->front->next;
-        }
-        q->front = NULL;    
-        ptr->next = NULL;
-    }
-    return ptr->element;
-}
-
 void display(queue *q)
 {
     node *ptr = q->front;
@@ -81,6 +65,26 @@ void display(queue *q)
     {
         printf("no element in queue");
     }
+}
+
+int dequeue(queue *q)
+{
+    node *ptr = q->front;
+    if (!isEmpty(q))
+    {
+        if (q->front == q->rear)
+        {
+            q->rear = NULL;
+            q->front = NULL;
+        }
+        else
+        {
+
+            q->front = q->front->next;
+            q->front->next = NULL;
+        }
+    }
+    return ptr->element;
 }
 
 int main()
