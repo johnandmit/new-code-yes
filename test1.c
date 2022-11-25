@@ -38,9 +38,20 @@ void remover(ddlNode *dlist, int key)
     {
         if (temp->info == key)
         {
-            ddlNode *TempNode = temp->prev;
-            TempNode->next = temp->next;
-            temp->next->prev = TempNode;
+            if (temp->prev == NULL)
+            {
+                dlist = dlist->next;
+            }
+            else if (temp->next == NULL)
+            {
+                temp->prev->next = NULL;
+            }
+            else
+            {
+                ddlNode *TempNode = temp->prev;
+                TempNode->next = temp->next;
+                temp->next->prev = TempNode;
+            }
         }
         temp = temp->next;
     }
